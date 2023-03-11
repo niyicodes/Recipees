@@ -7,7 +7,7 @@ const Searched = () => {
  let params = useParams();
  const getSearched = async (name) => {
   const api = await fetch(
-   `https://api.spoonacular.com/recipes/complexSearch?apiKey=806f36ed0a3b460882b139ab5cfdda75&query=${name}&number=100`
+   `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}&number=100`
   );
   const recipes = await api.json();
   setSearched(recipes.results);
@@ -18,9 +18,7 @@ const Searched = () => {
  return (
   <Grid>
    {searched.map((item) => {
-    return (
-     <Card image={item.image} title={item.title} key={item.id} id={item.id} />
-    );
+    return <Card image={item.image} title={item.title} key={item.id} id={item.id}/>;
    })}
   </Grid>
  );
