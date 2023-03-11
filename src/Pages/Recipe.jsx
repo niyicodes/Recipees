@@ -9,7 +9,7 @@ const Recipe = () => {
 
  const fetchDetails = async () => {
   const data = await fetch(
-   `https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`
+   `https://api.spoonacular.com/recipes/${params.name}/information?apiKey=806f36ed0a3b460882b139ab5cfdda75`
   );
   const detailsData = await data.json();
   setDetails(detailsData);
@@ -17,7 +17,7 @@ const Recipe = () => {
 
  useEffect(() => {
   fetchDetails();
- },[]);
+ });
 
  return (
   <DetailWrapper>
