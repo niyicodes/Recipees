@@ -17,7 +17,7 @@ const Recipe = () => {
 
  useEffect(() => {
   fetchDetails();
- }, [params.name]);
+ },[]);
 
  return (
   <DetailWrapper>
@@ -26,6 +26,7 @@ const Recipe = () => {
     <img src={details.image} alt="" />
    </div>
    <Info>
+    <div className="btn">
     <Button
      className={activeTab === "instructions" ? "active" : ""}
      onClick={() => setActiveTab("instructions")}
@@ -38,6 +39,7 @@ const Recipe = () => {
     >
      Ingredients
     </Button>
+    </div>
     {activeTab === "instructions" && (
      <div>
       <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
@@ -60,11 +62,15 @@ const DetailWrapper = styled.div`
  margin-top: 3rem;
  margin-bottom: 2.5rem;
  display: flex;
- flex-direction: row;
+ flex-direction: column;
  justify-content: space-between;
  gap:3rem;
  img{
   width: 100%;
+  border-radius: 10px;
+ }
+ h3{
+  text-align: justify;
  }
  .active {
   background: linear-gradient(35deg, #494949, #313131);
@@ -81,6 +87,12 @@ const DetailWrapper = styled.div`
  ul {
   margin-top: 2rem;
  }
+ @media screen and (max-width:1024px){
+   h3{
+   font-size:1rem;
+   text-align: justify;
+  }
+ }
 `;
 const Button = styled.button`
  padding: 1rem 2rem;
@@ -93,5 +105,14 @@ const Button = styled.button`
 
 const Info = styled.div`
  margin-left: .5rem;
+ @media (min-width: 280px) and (max-width: 480px){
+.btn{
+ display: flex;
+ flex-direction:column ;
+ align-items: center;
+ gap:1rem;
+}
+ }
+ 
 `;
 export default Recipe;
